@@ -1,0 +1,390 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Satrabel.OpenOutputCache</name>
+    </assembly>
+    <members>
+        <member name="T:Satrabel.OpenOutputCache.Components.FeatureController">
+            -----------------------------------------------------------------------------
+            <summary>
+            The Controller class for OpenOutputCache
+            
+            The FeatureController class is defined as the BusinessController in the manifest file (.dnn)
+            DotNetNuke will poll this class to find out which Interfaces the class implements. 
+            
+            The IPortable interface is used to import/export content from a DNN module
+            
+            The ISearchable interface is used by DNN to index the content of a module
+            
+            The IUpgradeable interface allows module developers to execute code during the upgrade 
+            process for a module.
+            
+            Below you will find stubbed out implementations of each, uncomment and populate with your own data
+            </summary>
+            -----------------------------------------------------------------------------
+        </member>
+        <member name="T:Satrabel.OpenOutputCache.OpenOutputCacheModuleBase">
+            <summary>
+            This base class can be used to define custom properties for multiple controls. 
+            An example module, DNNSimpleArticle (http://dnnsimplearticle.codeplex.com) uses this for an ArticleId
+            
+            Because the class inherits from PortalModuleBase, properties like ModuleId, TabId, UserId, and others, 
+            are accessible to your module's controls (that inherity from OpenOutputCacheModuleBase
+            
+            </summary>
+        </member>
+        <member name="F:Satrabel.OpenOutputCache.Edit.Label5">
+            <summary>
+            Label5 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Satrabel.OpenOutputCache.Edit.Label6">
+            <summary>
+            Label6 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Satrabel.OpenOutputCache.Edit.rblMode">
+            <summary>
+            rblMode control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Satrabel.OpenOutputCache.Edit.tbDefaultInclude">
+            <summary>
+            tbDefaultInclude control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Satrabel.OpenOutputCache.Edit.tbDefaultExclude">
+            <summary>
+            tbDefaultExclude control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Satrabel.OpenOutputCache.Edit.tbDuration">
+            <summary>
+            tbDuration control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Satrabel.OpenOutputCache.Edit.tbMaxVaryBy">
+            <summary>
+            tbMaxVaryBy control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Satrabel.OpenOutputCache.Edit.cbVaryByBrowser">
+            <summary>
+            cbVaryByBrowser control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Satrabel.OpenOutputCache.Edit.tbExpire">
+            <summary>
+            tbExpire control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Satrabel.OpenOutputCache.Edit.lbSave">
+            <summary>
+            lbSave control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Satrabel.OpenOutputCache.Edit.hlCancel">
+            <summary>
+            hlCancel control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="T:Satrabel.Providers.OutputCachingProviders.OpenOutputCachingProvider">
+            <summary>
+            Description résumée de OpenOutputCachingProvider
+            </summary>
+        </member>
+        <member name="T:Satrabel.Providers.OutputCachingProviders.OpenOutputCacheFilter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Satrabel.OpenOutputCache.Settings">
+            -----------------------------------------------------------------------------
+            <summary>
+            The Settings class manages Module Settings
+            
+            Typically your settings control would be used to manage settings for your module.
+            There are two types of settings, ModuleSettings, and TabModuleSettings.
+            
+            ModuleSettings apply to all "copies" of a module on a site, no matter which page the module is on. 
+            
+            TabModuleSettings apply only to the current module on the current page, if you copy that module to
+            another page the settings are not transferred.
+            
+            If you happen to save both TabModuleSettings and ModuleSettings, TabModuleSettings overrides ModuleSettings.
+            
+            Below we have some examples of how to access these settings but you will need to uncomment to use.
+            
+            Because the control inherits from OpenOutputCacheSettingsBase you have access to any custom properties
+            defined there, as well as properties from DNN such as PortalId, ModuleId, TabId, UserId and many more.
+            </summary>
+            -----------------------------------------------------------------------------
+        </member>
+        <member name="T:Satrabel.OpenOutputCache.OpenOutputCacheSettingsBase">
+            <summary>
+            This base class can be used to define custom properties for multiple controls. 
+            An example module, DNNSimpleArticle (http://dnnsimplearticle.codeplex.com) uses this for an ArticleId
+            
+            Because the class inherits from SettingsModuleBase, properties like ModuleId, TabId, UserId, and others, 
+            are accessible to your module's controls (that inherity from OpenOutputCacheSettingsBase
+            
+            </summary>
+        </member>
+        <member name="F:Satrabel.OpenOutputCache.Settings.lblSetting1">
+            <summary>
+            Contrôle lblSetting1.
+            </summary>
+            <remarks>
+            Champ généré automatiquement.
+            Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+            </remarks>
+        </member>
+        <member name="F:Satrabel.OpenOutputCache.Settings.txtSetting1">
+            <summary>
+            Contrôle txtSetting1.
+            </summary>
+            <remarks>
+            Champ généré automatiquement.
+            Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+            </remarks>
+        </member>
+        <member name="F:Satrabel.OpenOutputCache.Settings.lblSetting2">
+            <summary>
+            Contrôle lblSetting2.
+            </summary>
+            <remarks>
+            Champ généré automatiquement.
+            Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+            </remarks>
+        </member>
+        <member name="F:Satrabel.OpenOutputCache.Settings.txtSetting2">
+            <summary>
+            Contrôle txtSetting2.
+            </summary>
+            <remarks>
+            Champ généré automatiquement.
+            Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+            </remarks>
+        </member>
+        <member name="M:Satrabel.OpenOutputCache.Settings.LoadSettings">
+            -----------------------------------------------------------------------------
+            <summary>
+            LoadSettings loads the settings from the Database and displays them
+            </summary>
+            -----------------------------------------------------------------------------
+        </member>
+        <member name="M:Satrabel.OpenOutputCache.Settings.UpdateSettings">
+            -----------------------------------------------------------------------------
+            <summary>
+            UpdateSettings saves the modified settings to the Database
+            </summary>
+            -----------------------------------------------------------------------------
+        </member>
+        <member name="F:Satrabel.OpenOutputCache.View.lDefault">
+            <summary>
+            Contrôle lDefault.
+            </summary>
+            <remarks>
+            Champ généré automatiquement.
+            Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+            </remarks>
+        </member>
+        <member name="F:Satrabel.OpenOutputCache.View.lbEdit">
+            <summary>
+            Contrôle lbEdit.
+            </summary>
+            <remarks>
+            Champ généré automatiquement.
+            Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+            </remarks>
+        </member>
+        <member name="F:Satrabel.OpenOutputCache.View.lbClearCache">
+            <summary>
+            Contrôle lbClearCache.
+            </summary>
+            <remarks>
+            Champ généré automatiquement.
+            Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+            </remarks>
+        </member>
+        <member name="F:Satrabel.OpenOutputCache.View.Label1">
+            <summary>
+            Contrôle Label1.
+            </summary>
+            <remarks>
+            Champ généré automatiquement.
+            Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+            </remarks>
+        </member>
+        <member name="F:Satrabel.OpenOutputCache.View.Label2">
+            <summary>
+            Contrôle Label2.
+            </summary>
+            <remarks>
+            Champ généré automatiquement.
+            Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+            </remarks>
+        </member>
+        <member name="F:Satrabel.OpenOutputCache.View.Label3">
+            <summary>
+            Contrôle Label3.
+            </summary>
+            <remarks>
+            Champ généré automatiquement.
+            Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+            </remarks>
+        </member>
+        <member name="F:Satrabel.OpenOutputCache.View.Label4">
+            <summary>
+            Contrôle Label4.
+            </summary>
+            <remarks>
+            Champ généré automatiquement.
+            Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+            </remarks>
+        </member>
+        <member name="F:Satrabel.OpenOutputCache.View.Label5">
+            <summary>
+            Contrôle Label5.
+            </summary>
+            <remarks>
+            Champ généré automatiquement.
+            Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+            </remarks>
+        </member>
+        <member name="F:Satrabel.OpenOutputCache.View.Label6">
+            <summary>
+            Contrôle Label6.
+            </summary>
+            <remarks>
+            Champ généré automatiquement.
+            Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+            </remarks>
+        </member>
+        <member name="F:Satrabel.OpenOutputCache.View.ddlProvider">
+            <summary>
+            Contrôle ddlProvider.
+            </summary>
+            <remarks>
+            Champ généré automatiquement.
+            Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+            </remarks>
+        </member>
+        <member name="F:Satrabel.OpenOutputCache.View.tbDuration">
+            <summary>
+            Contrôle tbDuration.
+            </summary>
+            <remarks>
+            Champ généré automatiquement.
+            Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+            </remarks>
+        </member>
+        <member name="F:Satrabel.OpenOutputCache.View.ddlDefault">
+            <summary>
+            Contrôle ddlDefault.
+            </summary>
+            <remarks>
+            Champ généré automatiquement.
+            Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+            </remarks>
+        </member>
+        <member name="F:Satrabel.OpenOutputCache.View.tbExcept">
+            <summary>
+            Contrôle tbExcept.
+            </summary>
+            <remarks>
+            Champ généré automatiquement.
+            Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+            </remarks>
+        </member>
+        <member name="F:Satrabel.OpenOutputCache.View.tbMaxCount">
+            <summary>
+            Contrôle tbMaxCount.
+            </summary>
+            <remarks>
+            Champ généré automatiquement.
+            Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+            </remarks>
+        </member>
+        <member name="F:Satrabel.OpenOutputCache.View.bUpdate">
+            <summary>
+            Contrôle bUpdate.
+            </summary>
+            <remarks>
+            Champ généré automatiquement.
+            Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+            </remarks>
+        </member>
+        <member name="F:Satrabel.OpenOutputCache.View.gvPages">
+            <summary>
+            Contrôle gvPages.
+            </summary>
+            <remarks>
+            Champ généré automatiquement.
+            Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+            </remarks>
+        </member>
+        <member name="F:Satrabel.OpenOutputCache.View.gvCache">
+            <summary>
+            Contrôle gvCache.
+            </summary>
+            <remarks>
+            Champ généré automatiquement.
+            Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+            </remarks>
+        </member>
+        <member name="F:Satrabel.OpenOutputCache.View.gvModules">
+            <summary>
+            Contrôle gvModules.
+            </summary>
+            <remarks>
+            Champ généré automatiquement.
+            Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+            </remarks>
+        </member>
+    </members>
+</doc>
