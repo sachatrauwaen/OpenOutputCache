@@ -1,0 +1,104 @@
+<dotnetnuke type="Package" version="5.0">
+  <packages>
+    <package name="OpenOutputCache" type="Module" version="00.00.01">
+      <friendlyName>OpenOutputCache</friendlyName>
+      <description>Satrabel OpenOutputCache module</description>
+      <iconFile>~/Images/icon_extensions.gif</iconFile>
+      <owner>
+        <name>Satrabel</name>
+        <organization>Satrabel</organization>
+        <url>http://www.Satrabel.be</url>
+        <email>info@Satrabel.be</email>
+      </owner>
+      <license src="License.txt"></license>
+      <releaseNotes src="ReleaseNotes.txt"></releaseNotes>
+      <dependencies>
+        <dependency type="CoreVersion">07.00.00</dependency>
+      </dependencies>
+      <components>
+        <component type="ResourceFile">
+          <resourceFiles>
+            <basePath>DesktopModules/OpenOutputCache</basePath>
+            <resourceFile>
+              <name>Resources.zip</name>
+            </resourceFile>
+          </resourceFiles>
+        </component>
+
+        <component type="Module">
+          <desktopModule>
+            <moduleName>OpenOutputCache</moduleName>
+            <foldername>OpenOutputCache</foldername>
+            <businessControllerClass>Satrabel.OpenOutputCache.Components.FeatureController</businessControllerClass>
+            <supportedFeatures />
+            <moduleDefinitions>
+              <moduleDefinition>
+                <friendlyName>OpenOutputCache</friendlyName>
+                <defaultCacheTime>0</defaultCacheTime>
+                <moduleControls>
+                  <moduleControl>
+                    <controlKey />
+                    <controlSrc>DesktopModules/OpenOutputCache/View.ascx</controlSrc>
+                    <supportsPartialRendering>False</supportsPartialRendering>
+                    <controlTitle />
+                    <controlType>View</controlType>
+                    <iconFile />
+                    <helpUrl />
+                    <viewOrder>0</viewOrder>
+                  </moduleControl>
+                  <moduleControl>
+                    <controlKey>Edit</controlKey>
+                    <controlSrc>DesktopModules/OpenOutputCache/Edit.ascx</controlSrc>
+                    <supportsPartialRendering>False</supportsPartialRendering>
+                    <controlTitle>Edit Content</controlTitle>
+                    <controlType>Edit</controlType>
+                    <iconFile />
+                    <helpUrl />
+                    <viewOrder>0</viewOrder>
+                    <supportsPopUps>True</supportsPopUps>
+                  </moduleControl>
+                  
+                </moduleControls>
+              </moduleDefinition>
+            </moduleDefinitions>
+          </desktopModule>
+        </component>
+        <component type="Assembly">
+          <assemblies>
+            <basePath>bin</basePath>
+            <assembly>
+              <name>Satrabel.OpenOutputCache.dll</name>
+            </assembly>
+          </assemblies>
+        </component>
+        <component type="Config">
+          <config>
+            <configFile>web.config</configFile>
+            <install>
+              <configuration>
+                <nodes>
+                  <node path="/configuration/dotnetnuke/outputCaching/providers"
+                        action="update" key="name" collision="ignore">
+                    <add name="OpenOutputCachingProvider" type="Satrabel.Providers.OutputCachingProviders.OpenFileProvider.OpenFileProvider, Satrabel.OpenOutputCache" providerPath="~\Providers\OutputCachingProviders\OpenOutputCachingProvider\" />
+                  </node>
+                  
+                  <node path="/configuration/system.webServer/modules/add[@name='Services']" action="insertafter" key="name" collision="overwrite">
+                    <add name="OutputCaching" type="Satrabel.OpenOutputCache.HttpModules.OutputCache.OpenOutputCacheModule, Satrabel.OpenOutputCache" preCondition="managedHandler" />
+                  </node>
+                </nodes>
+              </configuration>
+            </install>
+            <uninstall>
+              <configuration>
+                <nodes>
+                  <node path="/configuration/system.webServer/modules/add[@name='OutputCaching']" action="remove" />
+                  <node path="/configuration/dotnetnuke/outputCaching/providers/add[@name='OpenOutputCachingProvider']" action="remove" />
+                </nodes>
+              </configuration>
+            </uninstall>
+          </config>
+        </component>
+      </components>
+    </package>
+  </packages>
+</dotnetnuke>
