@@ -34,6 +34,7 @@ namespace Satrabel.Providers.OutputCachingProviders.OpenFileProvider
         public const string AttribFileExtension = ".attrib.resources";
         private static readonly SharedDictionary<int, string> CacheFolderPath = new SharedDictionary<int, string>(LockingStrategy.ReaderWriter);
         #endregion
+
         public OpenFileProvider()
         {
         }
@@ -150,7 +151,7 @@ namespace Satrabel.Providers.OutputCachingProviders.OpenFileProvider
             {
                 if (!FileSystemUtils.DeleteFileWithWait(File, 100, 200))
                 {
-                    filesNotDeleted.Append(String.Format("{0};", File));
+                    filesNotDeleted.Append($"{File};");
                 }
                 else
                 {
@@ -159,7 +160,7 @@ namespace Satrabel.Providers.OutputCachingProviders.OpenFileProvider
             }
             if (filesNotDeleted.Length > 0)
             {
-                throw new IOException(String.Format("Deleted {0} files, however, some files are locked.  Could not delete the following files: {1}", i, filesNotDeleted));
+                throw new IOException($"Deleted {i} files, however, some files are locked.  Could not delete the following files: {filesNotDeleted}");
             }
         }
         public override void PurgeCache(int portalId)
@@ -181,14 +182,14 @@ namespace Satrabel.Providers.OutputCachingProviders.OpenFileProvider
             string cacheFolder = GetCacheFolder(portalId);
             if (Directory.Exists(cacheFolder) && IsPathInApplication(cacheFolder))
             {
-                foreach (string File in Directory.GetFiles(cacheFolder, String.Format("*{0}", AttribFileExtension)))
+                foreach (string file in Directory.GetFiles(cacheFolder, $"*{AttribFileExtension}"))
                 {
-                    if (IsFileExpired(File))
+                    if (IsFileExpired(file))
                     {
-                        string fileToDelete = File.Replace(AttribFileExtension, DataFileExtension);
+                        string fileToDelete = file.Replace(AttribFileExtension, DataFileExtension);
                         if (!FileSystemUtils.DeleteFileWithWait(fileToDelete, 100, 200))
                         {
-                            filesNotDeleted.Append(String.Format("{0};", fileToDelete));
+                            filesNotDeleted.Append($"{fileToDelete};");
                         }
                         else
                         {
@@ -199,7 +200,7 @@ namespace Satrabel.Providers.OutputCachingProviders.OpenFileProvider
             }
             if (filesNotDeleted.Length > 0)
             {
-                throw new IOException(String.Format("Deleted {0} files, however, some files are locked.  Could not delete the following files: {1}", i, filesNotDeleted));
+                throw new IOException($"Deleted {i} files, however, some files are locked.  Could not delete the following files: {filesNotDeleted}");
             }
         }
 
@@ -228,7 +229,7 @@ namespace Satrabel.Providers.OutputCachingProviders.OpenFileProvider
                     }
                     if (stringBuilder.Length > 0)
                     {
-                        throw new IOException(string.Format("Deleted {0} files, however, some files are locked.  Could not delete the following files: {1}", num, stringBuilder));
+                        throw new IOException($"Deleted {num} files, however, some files are locked.  Could not delete the following files: {stringBuilder}");
                     }
                 }
             }
@@ -252,10 +253,10 @@ namespace Satrabel.Providers.OutputCachingProviders.OpenFileProvider
                     FileSystemUtils.DeleteFileWithWait(attribFileName, 100, 200);
                 }
                 File.WriteAllBytes(cachedOutputFileName, output);
-                File.WriteAllLines(attribFileName, new string[] { 
+                File.WriteAllLines(attribFileName, new string[] {
                     DateTime.UtcNow.Add(duration).ToString(CultureInfo.InvariantCulture),
                     DateTime.UtcNow.ToString(CultureInfo.InvariantCulture),
-                    HttpContext.Current.Request.RawUrl,                    
+                    HttpContext.Current.Request.RawUrl,
                     HttpContext.Current.Request.Url.PathAndQuery,
                     HttpContext.Current.Request.Browser.Browser,
                     HttpContext.Current.Items["OpenOutputCache:RawCacheKey"].ToString(),
@@ -333,7 +334,7 @@ namespace Satrabel.Providers.OutputCachingProviders.OpenFileProvider
         {
             List<OpenOutputCacheItem> items = new List<OpenOutputCacheItem>();
 
-            var Files = Directory.GetFiles(GetCacheFolder(), String.Format("{0}_*{1}", TabId, DataFileExtension));
+            var Files = Directory.GetFiles(GetCacheFolder(), $"{TabId}_*{DataFileExtension}");
             foreach (var dateFileName in Files)
             {
                 //LastModified = Null.NullDate;

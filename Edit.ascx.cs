@@ -24,7 +24,7 @@ namespace Satrabel.OpenOutputCache
 
         #region Event Handlers
 
-        override protected void OnInit(EventArgs e)
+        protected override void OnInit(EventArgs e)
         {
             InitializeComponent();
             base.OnInit(e);

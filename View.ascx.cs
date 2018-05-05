@@ -93,10 +93,7 @@ namespace Satrabel.OpenOutputCache
 
                     if (ddlDefault.Items.Count == 2)
                         ddlDefault.Items.Insert(0, new ListItem(Localization.GetString("None_Specified"), ""));
-
-
                 }
-
             }
             catch (Exception exc) //Module failed to load
             {
