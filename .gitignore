@@ -33,3 +33,6 @@
 *.su
 obj/
 packages/
+.vs/
+OpenOutputCache.xml
+OpenOutputCache.csproj.user
