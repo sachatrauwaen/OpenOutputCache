@@ -44,7 +44,13 @@ namespace Satrabel.Providers.OutputCachingProviders.OpenFileProvider
         }
         public static int GetCachedItemCount(int tabId)
         {
-            return Directory.GetFiles(GetCacheFolder(), String.Format("{0}_*{1}", tabId, DataFileExtension)).Length;
+            string folder = GetCacheFolder();
+            if (Directory.Exists(folder))
+                return Directory.GetFiles(folder, $"{tabId}_*{DataFileExtension}").Length;
+            else
+            {
+                return 0;
+            }
         }
         public static string GetCachedOutputFileName(int tabId, string cacheKey)
         {
