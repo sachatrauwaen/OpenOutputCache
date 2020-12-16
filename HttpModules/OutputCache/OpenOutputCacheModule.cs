@@ -126,7 +126,7 @@ namespace Satrabel.OpenOutputCache.HttpModules.OutputCache
                 {
                     return;
                 }
-                OutputCachingProvider Provider = OutputCachingProvider.Instance(CacheProvider);
+                OutputCachingProvider provider = OutputCachingProvider.Instance(CacheProvider);
                 //string CurrentCulture = Localization.GetPageLocale(ps).Name;
                 StringCollection includeVaryByKeys;
                 StringCollection excludeVaryByKeys;
@@ -135,17 +135,31 @@ namespace Satrabel.OpenOutputCache.HttpModules.OutputCache
                 bool VaryAll = includeVaryByKeys.Count == 0;
                 foreach (string key in app.Context.Request.QueryString.Keys)
                 {
-                    varyBy.Add(key.ToLower(), app.Context.Request.QueryString[key]);
-                    if (VaryAll)
+                    try
                     {
-                        includeVaryByKeys.Add(key.ToLower());
-                    }
-                    else
-                    {
-                        if (!includeVaryByKeys.Contains(key) && !excludeVaryByKeys.Contains(key))
+                        // bughunt System.NullReferenceException: Object reference not set to an instance of an object.
+                        //         at Satrabel.OpenOutputCache.HttpModules.OutputCache.OpenOutputCacheModule.OnResolveRequestCache(Object sender, EventArgs e)
+                        //         in C:\Xtrasite\Klanten\Satrabel\OpenOutputCache\HttpModules\OutputCache\OpenOutputCacheModule.cs:line 138
+                        if (string.IsNullOrWhiteSpace(key))
+                            throw new Exception($"key is empty.");
+                        string qs = app.Context.Request.QueryString[key];
+                        // end bughunt
+                        varyBy.Add(key.ToLower(), qs);
+                        if (VaryAll)
                         {
-                            return;
+                            includeVaryByKeys.Add(key.ToLower());
                         }
+                        else
+                        {
+                            if (!includeVaryByKeys.Contains(key) && !excludeVaryByKeys.Contains(key))
+                            {
+                                return;
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception($"Error while processing QueryString. Request: {app.Context.Request.Url.AbsoluteUri}", ex);
                     }
                 }
                 if (PortalController.GetPortalSettingAsBoolean("OOC_VaryByBrowser", ps.PortalId, false))
@@ -154,13 +168,13 @@ namespace Satrabel.OpenOutputCache.HttpModules.OutputCache
                     includeVaryByKeys.Add("browser");
                 }
                 //excludeVaryByKeys.Add("returnurl");
-                string CacheKey = Provider.GenerateCacheKey(TabId, includeVaryByKeys, excludeVaryByKeys, varyBy);
+                string CacheKey = provider.GenerateCacheKey(TabId, includeVaryByKeys, excludeVaryByKeys, varyBy);
                 string RawCacheKey = GetRawCacheKey(includeVaryByKeys, excludeVaryByKeys, varyBy);
                 app.Context.Items["OpenOutputCache:RawCacheKey"] = RawCacheKey;
                 app.Context.Items["OpenOutputCache:AbsoluteUri"] = app.Request.Url.AbsoluteUri;
                 string CacheMode = PortalController.GetPortalSetting("OOC_CacheMode", ps.PortalId, "ServerCache");
                 int ExpireDelay = PortalController.GetPortalSettingAsInteger("OOC_ExpireDelay", ps.PortalId, 60);
-                if (Provider.StreamOutput(TabId, CacheKey, app.Context))
+                if (provider.StreamOutput(TabId, CacheKey, app.Context))
                 {
                     app.Context.Response.AddHeader("Content-Type", "text/html; charset=utf-8");
                     SetResponseCache(app.Context.Response, CacheKey, ExpireDelay, CacheMode);
