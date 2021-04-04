@@ -137,11 +137,14 @@ namespace Satrabel.OpenOutputCache.HttpModules.OutputCache
                 {
                     try
                     {
-                        // bughunt System.NullReferenceException: Object reference not set to an instance of an object.
-                        //         at Satrabel.OpenOutputCache.HttpModules.OutputCache.OpenOutputCacheModule.OnResolveRequestCache(Object sender, EventArgs e)
-                        //         in C:\Xtrasite\Klanten\Satrabel\OpenOutputCache\HttpModules\OutputCache\OpenOutputCacheModule.cs:line 138
+                        // prevent error on invalid querystring eg http://domain.com/?p1=valeu1&value2
                         if (string.IsNullOrWhiteSpace(key))
-                            throw new Exception($"key is empty.");
+                        {
+                            string referrer = app.Context.Request.UrlReferrer == null ? "none" : app.Context.Request.UrlReferrer.AbsoluteUri;
+                            Logger.Warn($"Invalid Querystring in url. Request: {app.Context.Request.Url.AbsoluteUri}.  Referrer: {referrer}");
+                            continue;
+                        }
+
                         string qs = app.Context.Request.QueryString[key];
                         // end bughunt
                         varyBy.Add(key.ToLower(), qs);
